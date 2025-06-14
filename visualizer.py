@@ -9,7 +9,7 @@ from bokeh.palettes import Category10
 import pandas as pd
 import numpy as np
 from typing import Dict, List
-from data_handler import TrainingFunction, IdealFunction
+from data_loader import TrainingFunction, IdealFunction
 
 
 class DataVisualizer:

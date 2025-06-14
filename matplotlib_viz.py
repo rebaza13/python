@@ -5,8 +5,8 @@ Alternative visualization using matplotlib for immediate viewing.
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from data_handler import DataReader
-from model_trainer import ModelTrainer
+from data_loader import DataReader
+from function_matcher import ModelTrainer
 
 def create_matplotlib_visualization():
     """Create matplotlib visualizations as backup to Bokeh."""

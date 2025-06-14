@@ -4,9 +4,9 @@ Main application that orchestrates the entire ideal function selection process.
 
 import os
 from typing import List
-from database import DatabaseManager, TrainingData, IdealFunctions, TestDataMappings
-from data_handler import DataReader
-from model_trainer import ModelTrainer
+from database_handler import DatabaseManager, TrainingData, IdealFunctions, TestDataMappings
+from data_loader import DataReader
+from function_matcher import ModelTrainer
 from visualizer import DataVisualizer
 from exceptions import DataProcessingError, DatabaseError
 

@@ -10,9 +10,9 @@ import os
 from unittest.mock import patch, MagicMock
 
 # Import modules to test
-from data_handler import DataReader, TrainingFunction, IdealFunction, BaseFunction
-from model_trainer import ModelTrainer
-from database import DatabaseManager, TrainingData, IdealFunctions, TestDataMappings
+from data_loader import DataReader, TrainingFunction, IdealFunction, BaseFunction
+from function_matcher import ModelTrainer
+from database_handler import DatabaseManager, TrainingData, IdealFunctions, TestDataMappings
 from exceptions import DataProcessingError, ValidationError, DatabaseError
 from main import IdealFunctionSelector
 

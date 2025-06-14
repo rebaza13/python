@@ -9,28 +9,19 @@ from exceptions import DatabaseError
 
 Base = declarative_base()
 
-
 class TrainingData(Base):
-    """Table for storing training data with x and 4 y-values."""
-    
     __tablename__ = 'training_data'
-    
     id = Column(Integer, primary_key=True)
     x = Column(Float, nullable=False)
     y1 = Column(Float, nullable=False)
     y2 = Column(Float, nullable=False)
     y3 = Column(Float, nullable=False)
     y4 = Column(Float, nullable=False)
-    
     def __repr__(self):
         return f"<TrainingData(x={self.x}, y1={self.y1}, y2={self.y2}, y3={self.y3}, y4={self.y4})>"
 
-
 class IdealFunctions(Base):
-    """Table for storing all 50 ideal functions."""
-    
     __tablename__ = 'ideal_functions'
-    
     id = Column(Integer, primary_key=True)
     x = Column(Float, nullable=False)
     y1 = Column(Float, nullable=False)
@@ -84,38 +75,22 @@ class IdealFunctions(Base):
     y49 = Column(Float, nullable=False)
     y50 = Column(Float, nullable=False)
 
-
 class TestDataMappings(Base):
-    """Table for storing test data mappings to ideal functions."""
-    
     __tablename__ = 'test_data_mappings'
-    
     id = Column(Integer, primary_key=True)
     x = Column(Float, nullable=False)
     y = Column(Float, nullable=False)
-    assigned_ideal_function = Column(Integer, nullable=True)  # 1-50, None if no assignment
+    assigned_ideal_function = Column(Integer, nullable=True)
     deviation = Column(Float, nullable=True)
-    
     def __repr__(self):
         return f"<TestDataMapping(x={self.x}, y={self.y}, function={self.assigned_ideal_function}, deviation={self.deviation})>"
 
-
 class DatabaseManager:
-    """Manages database operations for the ideal function selection system."""
-    
     def __init__(self, db_path: str = "ideal_functions.db"):
-        """
-        Initialize the database manager.
-        
-        Args:
-            db_path (str): Path to the SQLite database file
-        """
         self.db_path = db_path
         self.engine = None
         self.Session = None
-        
     def create_database(self):
-        """Create the database and all tables."""
         try:
             self.engine = create_engine(f'sqlite:///{self.db_path}')
             Base.metadata.create_all(self.engine)
@@ -123,14 +98,10 @@ class DatabaseManager:
             print(f"Database created successfully at {self.db_path}")
         except Exception as e:
             raise DatabaseError(f"Failed to create database: {str(e)}")
-    
     def get_session(self):
-        """Get a new database session."""
         if self.Session is None:
             raise DatabaseError("Database not initialized. Call create_database() first.")
         return self.Session()
-    
     def close(self):
-        """Close the database connection."""
         if self.engine:
             self.engine.dispose()
